@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "fircktech:block/graphite_ore"
+      "model": "fircktech:block/deepslate_graphite_ore"
     }
   }
 }

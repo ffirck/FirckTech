@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "fircktech:graphite_block",
+    "fircktech:graphite_ore",
+    "fircktech:deepslate_graphite_ore"
+  ]
+}
+

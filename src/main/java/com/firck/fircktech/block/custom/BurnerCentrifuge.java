@@ -1,6 +1,6 @@
 package com.firck.fircktech.block.custom;
 
-import com.firck.fircktech.block.entity.BurnerOreWasherBlockEntity;
+import com.firck.fircktech.block.entity.BurnerCentrifugeBlockEntity;
 import com.firck.fircktech.block.entity.ModBlockEntities;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -20,13 +20,13 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class BurnerOreWasher extends BlockWithEntity implements BlockEntityProvider {
+public class BurnerCentrifuge extends BlockWithEntity implements BlockEntityProvider {
 
     public static final BooleanProperty ON = BooleanProperty.of("on");
     public static final BooleanProperty LIT = BooleanProperty.of("lit");
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    public BurnerOreWasher(Settings settings) {
+    public BurnerCentrifuge(Settings settings) {
         super(settings);
         this.setDefaultState(((this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)).with(LIT, false).with(ON, false));
     }
@@ -34,7 +34,7 @@ public class BurnerOreWasher extends BlockWithEntity implements BlockEntityProvi
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+        return this.getDefaultState().with(FACING, ctx.getPlayerLookDirection().getOpposite());
     }
 
     @Override
@@ -55,8 +55,8 @@ public class BurnerOreWasher extends BlockWithEntity implements BlockEntityProvi
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof BurnerOreWasherBlockEntity) {
-                ItemScatterer.spawn(world, pos, (BurnerOreWasherBlockEntity)blockEntity);
+            if (blockEntity instanceof BurnerCentrifugeBlockEntity) {
+                ItemScatterer.spawn(world, pos, (BurnerCentrifugeBlockEntity)blockEntity);
                 world.updateComparators(pos,this);
             }
             super.onStateReplaced(state, world, pos, newState, moved);
@@ -68,7 +68,7 @@ public class BurnerOreWasher extends BlockWithEntity implements BlockEntityProvi
                               PlayerEntity player, Hand hand, BlockHitResult hit) {
 
         if (!world.isClient) {
-            NamedScreenHandlerFactory screenHandlerFactory = ((BurnerOreWasherBlockEntity) world.getBlockEntity(pos));
+            NamedScreenHandlerFactory screenHandlerFactory = ((BurnerCentrifugeBlockEntity) world.getBlockEntity(pos));
 
             if (screenHandlerFactory != null) {
                 player.openHandledScreen(screenHandlerFactory);
@@ -83,13 +83,13 @@ public class BurnerOreWasher extends BlockWithEntity implements BlockEntityProvi
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new BurnerOreWasherBlockEntity(pos, state);
+        return new BurnerCentrifugeBlockEntity(pos, state);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.BURNER_ORE_WASHER, BurnerOreWasherBlockEntity::tick);
+        return checkType(type, ModBlockEntities.BURNER_CENTRIFUGE, BurnerCentrifugeBlockEntity::tick);
     }
 
     @Override

@@ -1,2 +1,4 @@
-package com.firck.fircktech.item;public class HammerTool {
+package com.firck.fircktech.item;
+
+public class HammerTool {
 }

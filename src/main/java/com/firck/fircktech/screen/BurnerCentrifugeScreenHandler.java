@@ -11,16 +11,16 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
-public class BurnerOreGrinderScreenHandler extends ScreenHandler {
+public class BurnerCentrifugeScreenHandler extends ScreenHandler {
 
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
 
-    public BurnerOreGrinderScreenHandler(int syncId, PlayerInventory inv){
+    public BurnerCentrifugeScreenHandler(int syncId, PlayerInventory inv){
         this(syncId, inv, new SimpleInventory(3), new ArrayPropertyDelegate(4));
     }
-    public BurnerOreGrinderScreenHandler(int syncId, PlayerInventory playerInv, Inventory inv, PropertyDelegate delegate) {
-        super(ModScreenHandlers.BURNER_ORE_GRINDER_SCREEN_HANDLER, syncId);
+    public BurnerCentrifugeScreenHandler(int syncId, PlayerInventory playerInv, Inventory inv, PropertyDelegate delegate) {
+        super(ModScreenHandlers.BURNER_CENTRIFUGE_SCREEN_HANDLER, syncId);
         checkSize(inv, 3);
         this.inventory = inv;
         inv.onOpen(playerInv.player);
@@ -28,7 +28,7 @@ public class BurnerOreGrinderScreenHandler extends ScreenHandler {
 
         this.addSlot(new Slot(inventory, 0, 49, 59));
         this.addSlot(new Slot(inventory, 1, 49, 23));
-        this.addSlot(new OutputSlot(playerInv.player, inventory, 2, 107, 23));
+        this.addSlot(new OutputSlot(playerInv.player, inventory, 2, 94, 23));
 
         addPlayerInventory(playerInv);
         addPlayerHotbar(playerInv);
@@ -48,7 +48,7 @@ public class BurnerOreGrinderScreenHandler extends ScreenHandler {
     public int getScaledProgress() {
         int progress = this.propertyDelegate.get(0);
         int maxProgress = this.propertyDelegate.get(1);
-        int progressArrowSize = 25;
+        int progressArrowSize = 17;
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
@@ -61,13 +61,14 @@ public class BurnerOreGrinderScreenHandler extends ScreenHandler {
         return maxFuelTime != 0 && fuelTime != 0 ? fuelTime * fuelArrowSize / maxFuelTime : 0;
     }
 
-    public ItemStack transferSlot(PlayerEntity player, int invSlot) {
+    @Override
+    public ItemStack quickMove(PlayerEntity player, int slot) {
         ItemStack newStack = ItemStack.EMPTY;
-        Slot slot = this.slots.get(invSlot);
-        if (slot != null && slot.hasStack()) {
-            ItemStack originalStack = slot.getStack();
+        Slot invSlot = this.slots.get(slot);
+        if (invSlot != null && invSlot.hasStack()) {
+            ItemStack originalStack = invSlot.getStack();
             newStack = originalStack.copy();
-            if (invSlot < this.inventory.size()) {
+            if (slot < this.inventory.size()) {
                 if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
@@ -76,9 +77,9 @@ public class BurnerOreGrinderScreenHandler extends ScreenHandler {
             }
 
             if (originalStack.isEmpty()) {
-                slot.setStack(ItemStack.EMPTY);
+                invSlot.setStack(ItemStack.EMPTY);
             } else {
-                slot.markDirty();
+                invSlot.markDirty();
             }
         }
 

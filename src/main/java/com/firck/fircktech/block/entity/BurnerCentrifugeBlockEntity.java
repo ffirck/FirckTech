@@ -1,18 +1,17 @@
 package com.firck.fircktech.block.entity;
 
-import com.firck.fircktech.block.ModBlocks;
 import com.firck.fircktech.item.ModItems;
-import com.firck.fircktech.screen.BurnerOreGrinderScreenHandler;
+import com.firck.fircktech.screen.BurnerCentrifugeScreenHandler;
 import com.google.common.collect.Maps;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
-import net.minecraft.inventory.Inventories;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
@@ -26,11 +25,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
-import static com.firck.fircktech.block.custom.BurnerOreGrinder.LIT;
-import static com.firck.fircktech.block.custom.BurnerOreGrinder.ON;
+import static com.firck.fircktech.block.custom.BurnerCentrifuge.LIT;
+import static com.firck.fircktech.block.custom.BurnerCentrifuge.ON;
 import static net.minecraft.block.entity.AbstractFurnaceBlockEntity.createFuelTimeMap;
 
-public class BurnerOreGrinderBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
+public class BurnerCentrifugeBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
 
     private final DefaultedList<ItemStack> inv = DefaultedList.ofSize(3, ItemStack.EMPTY);
 
@@ -52,37 +51,35 @@ public class BurnerOreGrinderBlockEntity extends BlockEntity implements NamedScr
     }
     private static Map<Item, Integer> createIngredientMap() {
         Map<Item, Integer> map = Maps.newLinkedHashMap();
-        addIngredient(map, (ItemConvertible) ModBlocks.GRAPHITE_ORE, 3);
-        addIngredient(map, (ItemConvertible) ModBlocks.DEEPSLATE_GRAPHITE_ORE, 3);
+        addIngredient(map, ModItems.PURE_GRAPHITE, 1);
         return map;
     }
 
     private static Map<Item, Item> createOutputMap() {
         Map<Item, Item> map = Maps.newLinkedHashMap();
-        addOutput(map, (ItemConvertible) ModBlocks.GRAPHITE_ORE, ModItems.HIGHLY_IMPURE_GRAPHITE);
-        addOutput(map, (ItemConvertible) ModBlocks.DEEPSLATE_GRAPHITE_ORE, ModItems.HIGHLY_IMPURE_GRAPHITE);
+        addOutput(map, ModItems.PURE_GRAPHITE, ModItems.RAW_GRAPHITE);
         return map;
     }
 
-    public BurnerOreGrinderBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.BURNER_ORE_GRINDER, pos, state);
+    public BurnerCentrifugeBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.BURNER_CENTRIFUGE, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
             public int get(int index) {
                 switch (index) {
-                    case 0: return BurnerOreGrinderBlockEntity.this.progress;
-                    case 1: return BurnerOreGrinderBlockEntity.this.maxProgress;
-                    case 2: return BurnerOreGrinderBlockEntity.this.fuelTime;
-                    case 3: return BurnerOreGrinderBlockEntity.this.maxFuelTime;
+                    case 0: return BurnerCentrifugeBlockEntity.this.progress;
+                    case 1: return BurnerCentrifugeBlockEntity.this.maxProgress;
+                    case 2: return BurnerCentrifugeBlockEntity.this.fuelTime;
+                    case 3: return BurnerCentrifugeBlockEntity.this.maxFuelTime;
                     default: return 0;
                 }
             }
 
             public void set(int index, int value) {
                 switch(index) {
-                    case 0: BurnerOreGrinderBlockEntity.this.progress = value; break;
-                    case 1: BurnerOreGrinderBlockEntity.this.maxProgress = value; break;
-                    case 2: BurnerOreGrinderBlockEntity.this.fuelTime = value; break;
-                    case 3: BurnerOreGrinderBlockEntity.this.maxFuelTime = value; break;
+                    case 0: BurnerCentrifugeBlockEntity.this.progress = value; break;
+                    case 1: BurnerCentrifugeBlockEntity.this.maxProgress = value; break;
+                    case 2: BurnerCentrifugeBlockEntity.this.fuelTime = value; break;
+                    case 3: BurnerCentrifugeBlockEntity.this.maxFuelTime = value; break;
                 }
             }
 
@@ -99,13 +96,13 @@ public class BurnerOreGrinderBlockEntity extends BlockEntity implements NamedScr
 
     @Override
     public Text getDisplayName() {
-        return Text.literal("Burner Ore Grinder");
+        return Text.literal("Burner Centrifuge");
     }
 
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new BurnerOreGrinderScreenHandler(syncId, inv, this, this.propertyDelegate);
+        return new BurnerCentrifugeScreenHandler(syncId, inv, this, this.propertyDelegate);
     }
 
     public boolean canInsert(int slot, ItemStack stack, @Nullable Direction side) {
@@ -121,14 +118,14 @@ public class BurnerOreGrinderBlockEntity extends BlockEntity implements NamedScr
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, inv);
-        nbt.putInt("burner_ore_grinder.progress", progress);
+        nbt.putInt("burner_centrifuge.progress", progress);
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
         Inventories.readNbt(nbt, inv);
-        progress = nbt.getInt("burner_ore_grinder.progress");
+        progress = nbt.getInt("burner_centrifuge.progress");
     }
 
     private void resetProgress(){
@@ -142,7 +139,7 @@ public class BurnerOreGrinderBlockEntity extends BlockEntity implements NamedScr
     public static int getBurnTime(ItemStack stack) {
         return createFuelTimeMap().get(stack.getItem());
     }
-    public static void tick(World world, BlockPos blockPos, BlockState blockState, BurnerOreGrinderBlockEntity entity) {
+    public static void tick(World world, BlockPos blockPos, BlockState blockState, BurnerCentrifugeBlockEntity entity) {
         if(world.isClient()) return;
 
         if(hasRecipe(entity)){
@@ -185,7 +182,7 @@ public class BurnerOreGrinderBlockEntity extends BlockEntity implements NamedScr
         }
     }
 
-    private static void craftItem(BurnerOreGrinderBlockEntity entity){
+    private static void craftItem(BurnerCentrifugeBlockEntity entity){
         SimpleInventory inventory = new SimpleInventory(entity.size());
         for (int i = 0; i < entity.size(); i++) {
             inventory.setStack(i, entity.getStack(i));
@@ -203,7 +200,7 @@ public class BurnerOreGrinderBlockEntity extends BlockEntity implements NamedScr
         return createIngredientMap().containsKey(stack.getItem());
     }
 
-    private static boolean hasRecipe(BurnerOreGrinderBlockEntity entity) {
+    private static boolean hasRecipe(BurnerCentrifugeBlockEntity entity) {
         SimpleInventory inventory = new SimpleInventory(entity.size());
         for (int i = 0; i < entity.size(); i++) {
             inventory.setStack(i, entity.getStack(i));

@@ -1,48 +1,48 @@
 {
   "variants": {
     "facing=east,on=false,lit=false": {
-      "model": "fircktech:block/burner_ore_grinder",
+      "model": "fircktech:block/burner_centrifuge",
       "y": 90
     },
     "facing=east,on=true,lit=true": {
-      "model": "fircktech:block/burner_ore_grinder_on",
+      "model": "fircktech:block/burner_centrifuge_on",
       "y": 90
     },
     "facing=east,on=false,lit=true": {
-      "model": "fircktech:block/burner_ore_grinder_off_lit",
+      "model": "fircktech:block/burner_centrifuge_off_lit",
       "y": 90
     },
     "facing=north,on=false,lit=false": {
-      "model": "fircktech:block/burner_ore_grinder"
+      "model": "fircktech:block/burner_centrifuge"
     },
     "facing=north,on=true,lit=true": {
-      "model": "fircktech:block/burner_ore_grinder_on"
+      "model": "fircktech:block/burner_centrifuge_on"
     },
     "facing=north,on=false,lit=true": {
-      "model": "fircktech:block/burner_ore_grinder_off_lit"
+      "model": "fircktech:block/burner_centrifuge_off_lit"
     },
     "facing=south,on=false,lit=false": {
-      "model": "fircktech:block/burner_ore_grinder",
+      "model": "fircktech:block/burner_centrifuge",
       "y": 180
     },
     "facing=south,on=true,lit=true": {
-      "model": "fircktech:block/burner_ore_grinder_on",
+      "model": "fircktech:block/burner_centrifuge_on",
       "y": 180
     },
     "facing=south,on=false,lit=true": {
-      "model": "fircktech:block/burner_ore_grinder_off_lit",
+      "model": "fircktech:block/burner_centrifuge_off_lit",
       "y": 180
     },
     "facing=west,on=false,lit=false": {
-      "model": "fircktech:block/burner_ore_grinder",
+      "model": "fircktech:block/burner_centrifuge",
       "y": 270
     },
     "facing=west,on=true,lit=true": {
-      "model": "fircktech:block/burner_ore_grinder_on",
+      "model": "fircktech:block/burner_centrifuge_on",
       "y": 270
     },
     "facing=west,on=false,lit=true": {
-      "model": "fircktech:block/burner_ore_grinder_off_lit",
+      "model": "fircktech:block/burner_centrifuge_off_lit",
       "y": 270
     }
   }

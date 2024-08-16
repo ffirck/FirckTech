@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "fircktech:block/graphite_block"
+      "model": "fircktech:block/burner_machine_casing"
     }
   }
 }

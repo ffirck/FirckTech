@@ -1,0 +1,26 @@
+{
+  "item.fircktech.highly_impure_graphite": "Highly Impure Raw Graphite",
+  "item.fircktech.impure_graphite": "Impure Raw Graphite",
+  "item.fircktech.pure_graphite": "Pure Raw Graphite",
+  "item.fircktech.raw_graphite": "Raw Graphite",
+  "item.fircktech.graphite_shard": "Graphite Shard",
+  "item.fircktech.graphite_ingot": "Graphite Ingot",
+  "item.fircktech.graphite_rod": "Graphite Rod",
+
+  "block.fircktech.graphite_block": "Graphite Block",
+  "block.fircktech.graphite_ore": "Graphite Ore",
+  "block.fircktech.deepslate_graphite_ore": "Deepslate Graphite Ore",
+
+  "block.fircktech.burner_machine_casing": "Burner Machine Casing",
+
+  "block.fircktech.burner_ore_grinder": "Burner Ore Grinder",
+  "block.fircktech.burner_ore_washer": "Burner Ore Washer",
+  "block.fircktech.burner_centrifuge": "Burner Centrifuge",
+
+  "itemGroup.fircktech.fircktech_ingots": "FirckTech Ingots",
+  "itemGroup.fircktech.fircktech_material_products": "FirckTech Material Products",
+  "itemGroup.fircktech.fircktech_raw_materials": "FirckTech Raw Materials",
+  "itemGroup.fircktech.fircktech_blocks": "FirckTech Material Blocks",
+  "itemGroup.fircktech.fircktech_ores": "FirckTech Ores",
+  "itemGroup.fircktech.fircktech_machines": "FirckTech Machines"
+}

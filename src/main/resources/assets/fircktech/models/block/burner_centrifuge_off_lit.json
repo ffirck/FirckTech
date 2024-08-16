@@ -3,6 +3,6 @@
   "textures": {
     "front": "fircktech:block/burner_machine_on_front",
     "side": "fircktech:block/burner_machine_side",
-    "top": "fircktech:block/burner_ore_grinder_top"
+    "top": "fircktech:block/burner_centrifuge_top"
   }
 }

@@ -1,16 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "###",
-    "###",
-    "###"
+    "#X#",
+    "X#X",
+    "#X#"
   ],
   "key": {
     "#": {
-      "item": "fircktech:graphite_ingot"
+      "item": "fircktech:graphite_block"
+    },
+    "X": {
+      "item": "minecraft:bricks"
     }
   },
   "result": {
-    "item": "fircktech:graphite_block"
+    "item": "fircktech:burner_machine_casing"
   }
 }

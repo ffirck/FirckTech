@@ -1,5 +1,6 @@
 package com.firck.fircktech.client;
 
+import com.firck.fircktech.screen.BurnerCentrifugeScreen;
 import com.firck.fircktech.screen.BurnerOreGrinderScreen;
 import com.firck.fircktech.screen.BurnerOreWasherScreen;
 import com.firck.fircktech.screen.ModScreenHandlers;
@@ -12,5 +13,6 @@ public class FirckTechClient implements ClientModInitializer {
     public void onInitializeClient() {
         HandledScreens.register(ModScreenHandlers.BURNER_ORE_GRINDER_SCREEN_HANDLER, BurnerOreGrinderScreen::new);
         HandledScreens.register(ModScreenHandlers.BURNER_ORE_WASHER_SCREEN_HANDLER, BurnerOreWasherScreen::new);
+        HandledScreens.register(ModScreenHandlers.BURNER_CENTRIFUGE_SCREEN_HANDLER, BurnerCentrifugeScreen::new);
     }
 }

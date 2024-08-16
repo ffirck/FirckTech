@@ -2,17 +2,19 @@ package com.firck.fircktech.screen;
 
 import com.firck.fircktech.FirckTech;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.client.render.GameRenderer;
 
-public class BurnerOreGrinderScreen extends HandledScreen<BurnerOreGrinderScreenHandler> {
+public class BurnerCentrifugeScreen extends HandledScreen<BurnerCentrifugeScreenHandler> {
 
-    private static final Identifier TEXTURE = new Identifier(FirckTech.MOD_ID, "textures/gui/burner_ore_grinder_gui.png");
-    public BurnerOreGrinderScreen(BurnerOreGrinderScreenHandler handler, PlayerInventory inventory, Text title) {
+    private static final Identifier TEXTURE = new Identifier(FirckTech.MOD_ID, "textures/gui/burner_centrifuge_gui.png");
+    public BurnerCentrifugeScreen(BurnerCentrifugeScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
     }
 
@@ -23,35 +25,36 @@ public class BurnerOreGrinderScreen extends HandledScreen<BurnerOreGrinderScreen
     }
 
     @Override
-    protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+    protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
+        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
+        MatrixStack matrices = context.getMatrices();
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
-        drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
+        context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
-        renderProgressArrow(matrices, x, y);
+        renderProgressArrow(context, x, y);
 
-        renderFuelArrow(matrices, x, y);
+        renderFuelArrow(context, x, y);
     }
 
-    private void renderProgressArrow(MatrixStack matrices, int x, int y) {
+    private void renderProgressArrow(DrawContext context, int x, int y) {
         if(handler.isCrafting()) {
-            drawTexture(matrices, x + 72, y + 23, 176, 14, handler.getScaledProgress(), 16);
+            context.drawTexture(TEXTURE, x + 69, y + 22, 176, 14, handler.getScaledProgress(), 18);
         }
     }
 
-    private void renderFuelArrow(MatrixStack matrices, int x, int y) {
+    private void renderFuelArrow(DrawContext context, int x, int y) {
         if(handler.isBurning()) {
-            drawTexture(matrices, x + 50, y + 42 + (14-handler.getScaledFuelProgress()), 176, 14-handler.getScaledFuelProgress(), 14, handler.getScaledFuelProgress());
+            context.drawTexture(TEXTURE, x + 50, y + 42 + (14-handler.getScaledFuelProgress()), 176, 14-handler.getScaledFuelProgress(), 14, handler.getScaledFuelProgress());
         }
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        renderBackground(matrices);
-        super.render(matrices, mouseX, mouseY, delta);
-        drawMouseoverTooltip(matrices, mouseX, mouseY);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        renderBackground(context);
+        super.render(context, mouseX, mouseY, delta);
+        drawMouseoverTooltip(context, mouseX, mouseY);
     }
 }

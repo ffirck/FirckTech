@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "fircktech:item/impure_graphite_1"
+    "layer0": "fircktech:item/highly_impure_graphite"
   }
 }

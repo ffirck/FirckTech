@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.firck.fircktech.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+
+  ],
+  "client": [
+    "FirckTechMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

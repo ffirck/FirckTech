@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/orientable",
   "textures": {
-    "front": "fircktech:block/burner_ore_grinder_front",
-    "side": "fircktech:block/burner_ore_grinder_side",
-    "top": "fircktech:block/burner_ore_grinder_top"
+    "front": "fircktech:block/burner_machine_on_front",
+    "side": "fircktech:block/burner_machine_side",
+    "top": "fircktech:block/burner_ore_grinder_on_top"
   }
 }

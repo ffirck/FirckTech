@@ -4,12 +4,26 @@
   "version": "${version}",
   "name": "FirckTech",
   "description": "i have no idea what im doing really",
-  "authors": [],
-  "contact": {},
+  "authors": [
+    "firck"
+  ],
+  "contact": {
+    "website": "http://popster.fun"
+  },
   "license": "MIT",
   "icon": "assets/fircktech/icon.png",
   "environment": "*",
-  "entrypoints": {},
+  "entrypoints": {
+    "main": [
+      "com.firck.fircktech.FirckTech"
+    ],
+    "client": [
+      "com.firck.fircktech.client.FirckTechClient"
+    ]
+  },
+  "mixins": [
+    "fircktech.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",

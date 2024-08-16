@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "fircktech:block/graphite_block"
+    "all": "fircktech:block/burner_machine_casing"
   }
 }
