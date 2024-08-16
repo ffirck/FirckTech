@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "fircktech:block/graphite_block"
+    }
+  }
+}

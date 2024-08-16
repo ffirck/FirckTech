@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 500,
+  "experience": 0.15,
+  "ingredient": {
+    "tag": "fircktech:raw_graphite"
+  },
+  "result": "fircktech:graphite_shard"
+}

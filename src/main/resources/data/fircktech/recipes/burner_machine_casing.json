@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "fircktech:graphite_ingot"
+    }
+  },
+  "result": {
+    "item": "fircktech:graphite_block"
+  }
+}

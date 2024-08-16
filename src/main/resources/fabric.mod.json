@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "fircktech",
+  "version": "${version}",
+  "name": "FirckTech",
+  "description": "i have no idea what im doing really",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/fircktech/icon.png",
+  "environment": "*",
+  "entrypoints": {},
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
